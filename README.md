@@ -6,4 +6,6 @@ Jest to kod tylko i wyłącznie na zajęcia!
 
 Nie cały kod jest mój :)
 
+Zadania i ich opis znajduje się tutaj: https://eduwiki.wmi.amu.edu.pl/wwawrzy/2016_DZ_SWB
+
 Lubie gita i chce mieć to w 1 miejcu :)
