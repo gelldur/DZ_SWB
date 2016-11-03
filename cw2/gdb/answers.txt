@@ -23,3 +23,8 @@ Czyli length było 0
 - zbędna definicja int i =0;
 - nie zwalnianie pamięci int *tablica = new int[n];
 - na sztywno wyświetlamy 5 elementów wyswietl(tablica, 5);
+
+4)
+
+- Dzielenia przez 0 return -c/b;
+- Dzielenie przez 0 potencjalnie return (-b-sqrt(delta))/(2*a); czy return (-b+sqrt(delta))/(2*a);
