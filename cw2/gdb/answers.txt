@@ -1,3 +1,18 @@
+1)
+
 W lini 38:    return s/length;
 Mamy komunikat Program terminated with signal SIGFPE, Arithmetic exception.
 Czyli length było 0
+
+
+2)
+
+- Tablica o długości 0
+- Nie zwalniana pamięć zmiennej tab1
+- Nie uwzględnianie tablicy o mniejszym rozmiarze scanf("%d", &tabl[1]);
+- Nie indeksowanie tablicy od 0     scanf("%d", &tabl[1]);
+- Wykrocznie po za indeks tablicy for (i=2; i<=n; i++)  (rozmiar o 1 za mało)
+- minimum - nie uwzględnianie liczb mniejszych od 0 int m =0;
+- minimum szuka maksimum...
+- analogicznie w maksimum
+- potencjalne dzielenie przez 0 w średniej return avg/n;
