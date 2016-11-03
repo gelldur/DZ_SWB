@@ -1,0 +1,3 @@
+W lini 38:    return s/length;
+Mamy komunikat Program terminated with signal SIGFPE, Arithmetic exception.
+Czyli length było 0
