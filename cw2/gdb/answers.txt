@@ -16,3 +16,10 @@ Czyli length było 0
 - minimum szuka maksimum...
 - analogicznie w maksimum
 - potencjalne dzielenie przez 0 w średniej return avg/n;
+
+
+3)
+
+- zbędna definicja int i =0;
+- nie zwalnianie pamięci int *tablica = new int[n];
+- na sztywno wyświetlamy 5 elementów wyswietl(tablica, 5);
