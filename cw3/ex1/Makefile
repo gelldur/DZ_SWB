@@ -1,6 +1,6 @@
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
-CFLAGS=-Wall
+CFLAGS=-Wall -pg
 
 
 main: $(OBJECTS)
