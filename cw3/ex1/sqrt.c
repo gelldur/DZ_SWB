@@ -5,11 +5,6 @@
 /* This function adds two numbers. */
 double very_smart_add(double a, double b)
 {
-	while (b >= STEP)
-	{
-		a += STEP;
-		b -= STEP;
-	}
 	a += b;
 	return a;
 }
