@@ -29,11 +29,8 @@ double the_middle_of(double a, double b)
 {
 	double r = 0;
 	double s = a + b;
-	while (r + r < s)
-	{
-		r += 1.0;
-	}
-	return the_middle_of2(r - 1.0, s - (r - 1.0));
+
+	return the_middle_of2(r - 1.0, s - (s/2.F - 1.0));
 }
 
 double square_root(double x)
