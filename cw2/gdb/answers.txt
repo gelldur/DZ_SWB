@@ -23,6 +23,7 @@ Czyli length było 0
 - zbędna definicja int i =0;
 - nie zwalnianie pamięci int *tablica = new int[n];
 - na sztywno wyświetlamy 5 elementów wyswietl(tablica, 5);
+- tablica nie jest odwracana. Wystarczy wykonać to do połowy tablicy
 
 4)
 
