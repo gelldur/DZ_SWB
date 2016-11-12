@@ -8,24 +8,12 @@
 #include "infoelement.h"
 #include <cstdlib>
 #include <iostream>
-#include <string.h>
 
 int InfoElement::getTime() {
 	return time;
 }
 
-InfoElement::InfoElement(char *tinfo, int ttime) {
-	info = strdup(tinfo);
-	time = ttime;
+InfoElement::InfoElement(const std::string& tinfo, int ttime)
+	:info(tinfo),time(ttime)
+{
 }
-
-InfoElement::InfoElement() {
-	info = "";
-	time = 0;
-}
-
-InfoElement::InfoElement(const InfoElement &obj) {
-	info = strdup(obj.info);
-	time = obj.time;
-}
-

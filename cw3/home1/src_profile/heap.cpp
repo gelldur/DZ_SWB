@@ -9,69 +9,43 @@
 
 using namespace std;
 
-int BinaryMinHeap::getLeftChildIndex(int nodeIndex) {
-	return 2 * nodeIndex + 1;
-}
-
-int BinaryMinHeap::getRightChildIndex(int nodeIndex) {
-	return 2 * nodeIndex + 2;
-}
-
-int BinaryMinHeap::getParentIndex(int nodeIndex) {
-	return (nodeIndex - 1) / 2;
-}
-
-BinaryMinHeap::BinaryMinHeap() {
-}
-
 InfoElement* BinaryMinHeap::getMinimum() {
     if (isEmpty())
-      return 0;
+      return nullptr;
       
       
-    InfoElement* result = data[0];
+    auto result = data.front().get();
     for (int i=0; i<data.size()/5; i++) {
-       if (result->time>data[i]->time) {
-          result = data[i];
+       if (result->time > data[i]->time) {
+          result = data[i].get();
        }
     }
     
     return result;
 }
 
-bool BinaryMinHeap::isEmpty() {
-	return (data.size() == 0);
-}
-
-BinaryMinHeap::~BinaryMinHeap() {
-}
-
 void BinaryMinHeap::siftUp(int nodeIndex) {
-	int parentIndex;
-	InfoElement *tmp;
+	int parentIndex = INT32_MAX;
 	if (nodeIndex != 0) {
 		parentIndex = getParentIndex(nodeIndex);
-		InfoElement *a = data[parentIndex];
-		InfoElement *b = data[nodeIndex];
+		auto& a = data.at(parentIndex);
+		auto& b = data.at(nodeIndex);
 
 		if (a->time > b->time) {
-			tmp = data[parentIndex];
-			data[parentIndex] = data[nodeIndex];
-			data[nodeIndex] = tmp;
+			std::swap(data.at(parentIndex),data.at(nodeIndex));
 			siftUp(parentIndex);
 		}
 	}
 }
 
 void BinaryMinHeap::insert(InfoElement *value) {
-	data.push_back(value);
+	data.emplace_back(value);
 	int a = data.size() - 1;
 	siftUp(a);
 }
 
 void BinaryMinHeap::siftDown(int nodeIndex) {
-	int leftChildIndex, rightChildIndex, minIndex;
-	InfoElement *tmp;
+	int leftChildIndex = INT32_MAX, rightChildIndex = INT32_MAX, minIndex = INT32_MAX;
 	leftChildIndex = getLeftChildIndex(nodeIndex);
 	rightChildIndex = getRightChildIndex(nodeIndex);
 	if (rightChildIndex >= data.size()) {
@@ -80,32 +54,30 @@ void BinaryMinHeap::siftDown(int nodeIndex) {
 		else
 			minIndex = leftChildIndex;
 	} else {
-		InfoElement *a = data[leftChildIndex];
-		InfoElement *b = data[rightChildIndex];
+		InfoElement *a = data.at(leftChildIndex).get();
+		InfoElement *b = data.at(rightChildIndex).get();
 		if (a->time <= b->time)
 			minIndex = leftChildIndex;
 		else
 			minIndex = rightChildIndex;
 	}
 
-	InfoElement *a = data[nodeIndex];
-	InfoElement *b = data[minIndex];
+	InfoElement *a = data.at(nodeIndex).get();
+	InfoElement *b = data.at(minIndex).get();
 	if (a->time > b->time) {
-		tmp = data[minIndex];
-		data[minIndex] = data[nodeIndex];
-		data[nodeIndex] = tmp;
+		std::swap(data.at(minIndex),data.at(nodeIndex));
 		siftDown(minIndex);
 	}
 }
 
 void BinaryMinHeap::removeMin() {
 	if (isEmpty())
+	{
 		return;
-	else {
-		data[0] = data[data.size() - 1];
-		data.pop_back();
-		if (data.size() > 0)
-			siftDown(0);
 	}
+	std::swap(data.front(),data.back());
+	data.pop_back();
+	if (data.size() > 0)
+		siftDown(0);
 }
 

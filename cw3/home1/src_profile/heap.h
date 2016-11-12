@@ -5,7 +5,7 @@
  *      Author: wawrzyniakw
  */
 #include <vector>
-
+#include <memory>
 
 #ifndef HEAP_H_
 #define HEAP_H_
@@ -14,22 +14,30 @@ using namespace std;
 
 class BinaryMinHeap {
 private:
-	vector<InfoElement* > data;
+	vector<std::unique_ptr<InfoElement> > data;
 
-	int getLeftChildIndex(int nodeIndex);
+	int getLeftChildIndex(int nodeIndex) const
+	{
+		return 2 * nodeIndex + 1;
+	}
 
-	int getRightChildIndex(int nodeIndex);
+	int getRightChildIndex(int nodeIndex) const
+	{
+		return 2 * nodeIndex + 2;
+	}
 
-	int getParentIndex(int nodeIndex) ;
+	int getParentIndex(int nodeIndex) const
+	{
+		return (nodeIndex - 1) / 2;
+	}
 
 public:
-	BinaryMinHeap();
-
 	InfoElement* getMinimum();
 
-	bool isEmpty();
-
-	~BinaryMinHeap();
+	bool isEmpty() const
+	{
+		return data.empty();
+	}
 
 	void siftUp(int nodeIndex);
 

@@ -8,19 +8,18 @@
 #ifndef INFOELEMENT_H_
 #define INFOELEMENT_H_
 
+#include <string>
 
 class InfoElement {
 public:
-	char* info; // information
-	int time; // time_to_show
+	std::string info; // information
+	int time = 0; // time_to_show
 
 	int getTime();
 
-	InfoElement(char *tinfo, int ttime);
+	InfoElement(const std::string& tinfo, int ttime);
 
-	InfoElement();
-
-	InfoElement(const InfoElement &obj);
+	InfoElement() = default;
 };
 
 #endif /* INFOELEMENT_H_ */
