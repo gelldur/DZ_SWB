@@ -1,0 +1,2 @@
+gcc main.o -L. -Wl,-Bdynamic -lmath -o main
+
