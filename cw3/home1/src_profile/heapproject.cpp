@@ -4,11 +4,14 @@
 #include <memory>
 #include <stdio.h>
 #include <string.h>
+#include <cassert>
 #include <sstream>
 #include "infoelement.h"
 #include "heap.h"
 
 using namespace std;
+
+int checkPrevious = -1;
 
 int MAX_PRIORITY = 1000000;
 std::unique_ptr<BinaryMinHeap> queue1;
@@ -27,6 +30,8 @@ void usuwajElementy(BinaryMinHeap* q1) {
 
 	while (!q1->isEmpty()) {
 		printf("Minimum to: %s\n", q1->getMinimum()->info.c_str());
+		assert(checkPrevious <= queue1->getMinimum()->time);
+		checkPrevious = queue1->getMinimum()->time;
 		q1->removeMin();
 	}
 }
@@ -46,6 +51,8 @@ int main() {
 	else
 	{
 		printf("Minimum to: %s\n", queue1->getMinimum()->info);
+		assert(checkPrevious <= queue1->getMinimum()->time);
+		checkPrevious = queue1->getMinimum()->time;
 		queue1->removeMin();
 	}
 	usuwajElementy(queue1.get());
