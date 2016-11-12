@@ -12,7 +12,6 @@ using namespace std;
 
 int MAX_PRIORITY = 1000000;
 std::unique_ptr<BinaryMinHeap> queue1;
-std::unique_ptr<BinaryMinHeap> queue2;
 
 void losujElementy(int count, const std::string& prefix, BinaryMinHeap *queue) {
 	std::stringstream stream;
@@ -24,43 +23,21 @@ void losujElementy(int count, const std::string& prefix, BinaryMinHeap *queue) {
 	}
 }
 
-void usuwajElementy(BinaryMinHeap* q1, BinaryMinHeap* q2) {
+void usuwajElementy(BinaryMinHeap* q1) {
 
-	for (int i = 0; i <= MAX_PRIORITY; ++i) {
-		while (!q1->isEmpty() && q1->getMinimum()->time < i) {
-			printf("Minimum to: %s\n", q1->getMinimum()->info.c_str());
-			q1->removeMin();
-		}
-		while (!q2->isEmpty() && q2->getMinimum()->time < i) {
-			printf("Minimum to: %s\n", q2->getMinimum()->info.c_str());
-			q2->removeMin();
-		}
+	while (!q1->isEmpty()) {
+		printf("Minimum to: %s\n", q1->getMinimum()->info.c_str());
+		q1->removeMin();
 	}
 }
-
-void usuwajCichoElementy(BinaryMinHeap* q1, BinaryMinHeap* q2) {
-
-	for (int i = 0; i <= MAX_PRIORITY; i++) {
-		while (!q1->isEmpty() && q1->getMinimum()->time < i) {
-		//	printf("Minimum to: %s\n", q1->getMinimum()->info);
-			q1->removeMin();
-		}
-		while (!q2->isEmpty() && q2->getMinimum()->time < i) {
-		//	printf("Minimum to: %s\n", q2->getMinimum()->info);
-			q2->removeMin();
-		}
-	}
-}
-
 
 int main() {
 	srand((unsigned) time(NULL));
 
 	queue1 = std::unique_ptr<BinaryMinHeap>(new BinaryMinHeap());
-	queue2 = std::unique_ptr<BinaryMinHeap>(new BinaryMinHeap());
 
 	losujElementy(30000, "kolejka1", queue1.get());
-	losujElementy(30000, "kolejka2", queue2.get());
+	losujElementy(30000, "kolejka2", queue1.get());
 
 	if (queue1->isEmpty())
 	{
@@ -71,7 +48,7 @@ int main() {
 		printf("Minimum to: %s\n", queue1->getMinimum()->info);
 		queue1->removeMin();
 	}
-	usuwajElementy(queue1.get(),queue2.get());
+	usuwajElementy(queue1.get());
 	//losujElementy(350000, "kolejka1", queue1.get());
 	//losujElementy(350000, "kolejka2", queue2.get());
 
